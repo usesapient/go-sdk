@@ -9,7 +9,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/stainless-sdks/sapient-go/packages/param"
+	"github.com/usesapient/go-sdk/packages/param"
 )
 
 var encoders sync.Map // map[reflect.Type]encoderFunc

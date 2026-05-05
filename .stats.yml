@@ -1,4 +1,4 @@
 configured_endpoints: 17
-openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/sapient/sapient-908ede43a8944686476822ee14a7f1b1ae3999071a43582a6f88e5d4bff26b33.yml
+openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/sapient/sapient-4b34491e91581fe83b1750bd0f7563130239808e7c076e04f8df9a5c3a7c6265.yml
 openapi_spec_hash: d786bf9a6956b2e85340b6869646ee38
-config_hash: ab4e633d60f3a8815964154998be703c
+config_hash: a5d275d7da5c3f027497d7559f02427e

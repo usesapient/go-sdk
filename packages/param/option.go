@@ -3,7 +3,7 @@ package param
 import (
 	"encoding/json"
 	"fmt"
-	shimjson "github.com/stainless-sdks/sapient-go/internal/encoding/json"
+	shimjson "github.com/usesapient/go-sdk/internal/encoding/json"
 	"time"
 )
 

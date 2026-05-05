@@ -7,7 +7,7 @@ package apijson
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/stainless-sdks/sapient-go/packages/param"
+	"github.com/usesapient/go-sdk/packages/param"
 	"reflect"
 	"strconv"
 	"sync"

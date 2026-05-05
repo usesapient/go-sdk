@@ -3,7 +3,7 @@
 package sapient
 
 import (
-	"github.com/stainless-sdks/sapient-go/option"
+	"github.com/usesapient/go-sdk/option"
 )
 
 // APIService contains methods and other services that help with interacting with

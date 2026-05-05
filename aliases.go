@@ -3,8 +3,8 @@
 package sapient
 
 import (
-	"github.com/stainless-sdks/sapient-go/internal/apierror"
-	"github.com/stainless-sdks/sapient-go/packages/param"
+	"github.com/usesapient/go-sdk/internal/apierror"
+	"github.com/usesapient/go-sdk/packages/param"
 )
 
 // aliased to make [param.APIUnion] private when embedding

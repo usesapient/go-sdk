@@ -3,8 +3,8 @@ package apijson_test
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/stainless-sdks/sapient-go/internal/apijson"
-	"github.com/stainless-sdks/sapient-go/packages/param"
+	"github.com/usesapient/go-sdk/internal/apijson"
+	"github.com/usesapient/go-sdk/packages/param"
 	"reflect"
 	"testing"
 )

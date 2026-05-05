@@ -1,7 +1,7 @@
 package sapient
 
 import (
-	"github.com/stainless-sdks/sapient-go/packages/param"
+	"github.com/usesapient/go-sdk/packages/param"
 	"io"
 	"time"
 )

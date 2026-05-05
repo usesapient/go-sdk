@@ -2,8 +2,8 @@ package apijson_test
 
 import (
 	"encoding/json"
-	"github.com/stainless-sdks/sapient-go/internal/apijson"
-	"github.com/stainless-sdks/sapient-go/packages/respjson"
+	"github.com/usesapient/go-sdk/internal/apijson"
+	"github.com/usesapient/go-sdk/packages/respjson"
 	"testing"
 )
 

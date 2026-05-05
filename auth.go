@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"slices"
 
-	"github.com/stainless-sdks/sapient-go/internal/requestconfig"
-	"github.com/stainless-sdks/sapient-go/option"
+	"github.com/usesapient/go-sdk/internal/requestconfig"
+	"github.com/usesapient/go-sdk/option"
 )
 
 // AuthService contains methods and other services that help with interacting with

@@ -1,7 +1,7 @@
 package apijson
 
 import (
-	"github.com/stainless-sdks/sapient-go/packages/respjson"
+	"github.com/usesapient/go-sdk/packages/respjson"
 	"reflect"
 )
 
