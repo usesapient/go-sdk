@@ -1,4 +1,4 @@
-module github.com/stainless-sdks/sapient-go
+module github.com/usesapient/go-sdk
 
 go 1.22
 

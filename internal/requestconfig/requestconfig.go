@@ -18,10 +18,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/stainless-sdks/sapient-go/internal"
-	"github.com/stainless-sdks/sapient-go/internal/apierror"
-	"github.com/stainless-sdks/sapient-go/internal/apiform"
-	"github.com/stainless-sdks/sapient-go/internal/apiquery"
+	"github.com/usesapient/go-sdk/internal"
+	"github.com/usesapient/go-sdk/internal/apierror"
+	"github.com/usesapient/go-sdk/internal/apiform"
+	"github.com/usesapient/go-sdk/internal/apiquery"
 )
 
 func getDefaultHeaders() map[string]string {

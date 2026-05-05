@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"net/http/httputil"
 
-	"github.com/stainless-sdks/sapient-go/internal/apijson"
-	"github.com/stainless-sdks/sapient-go/packages/respjson"
+	"github.com/usesapient/go-sdk/internal/apijson"
+	"github.com/usesapient/go-sdk/packages/respjson"
 )
 
 // Error represents an error that originates from the API, i.e. when a request is

@@ -2,7 +2,7 @@
 package json
 
 import (
-	"github.com/stainless-sdks/sapient-go/internal/encoding/json/shims"
+	"github.com/usesapient/go-sdk/internal/encoding/json/shims"
 	"reflect"
 	"time"
 )

@@ -10,10 +10,10 @@ import (
 	"net/url"
 	"slices"
 
-	"github.com/stainless-sdks/sapient-go/internal/apiquery"
-	"github.com/stainless-sdks/sapient-go/internal/requestconfig"
-	"github.com/stainless-sdks/sapient-go/option"
-	"github.com/stainless-sdks/sapient-go/packages/param"
+	"github.com/usesapient/go-sdk/internal/apiquery"
+	"github.com/usesapient/go-sdk/internal/requestconfig"
+	"github.com/usesapient/go-sdk/option"
+	"github.com/usesapient/go-sdk/packages/param"
 )
 
 // APIJobService contains methods and other services that help with interacting
