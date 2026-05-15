@@ -141,7 +141,21 @@ func (r *PromptTopicListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type PromptTopicDeleteResponse = any
+type PromptTopicDeleteResponse struct {
+	Ok bool `json:"ok" api:"required"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		Ok          respjson.Field
+		ExtraFields map[string]respjson.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r PromptTopicDeleteResponse) RawJSON() string { return r.JSON.raw }
+func (r *PromptTopicDeleteResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type PromptTopicNewParams struct {
 	Name string `json:"name" api:"required"`

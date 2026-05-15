@@ -79,7 +79,6 @@ type APIPerformanceRunGetResponseData struct {
 	ID                string           `json:"id" api:"required"`
 	APICallLog        map[string]any   `json:"api_call_log" api:"nullable"`
 	ConversationTurns []map[string]any `json:"conversation_turns" api:"nullable"`
-	CostUsd           float64          `json:"cost_usd" api:"nullable"`
 	CreatedAt         string           `json:"created_at" api:"nullable"`
 	ErrorMessage      string           `json:"error_message" api:"nullable"`
 	EvalID            string           `json:"eval_id" api:"nullable"`
@@ -87,9 +86,11 @@ type APIPerformanceRunGetResponseData struct {
 	ExecutionStderr   string           `json:"execution_stderr" api:"nullable"`
 	ExecutionStdout   string           `json:"execution_stdout" api:"nullable"`
 	ExitCode          int64            `json:"exit_code" api:"nullable"`
+	ExpectedBehavior  string           `json:"expected_behavior" api:"nullable"`
 	FailureReasons    []string         `json:"failure_reasons" api:"nullable"`
 	GeneratedFiles    map[string]any   `json:"generated_files" api:"nullable"`
 	GraderResults     map[string]any   `json:"grader_results" api:"nullable"`
+	Graders           []map[string]any `json:"graders"`
 	LatencyMs         int64            `json:"latency_ms" api:"nullable"`
 	Model             string           `json:"model" api:"nullable"`
 	ModelType         string           `json:"model_type" api:"nullable"`
@@ -97,6 +98,7 @@ type APIPerformanceRunGetResponseData struct {
 	Platform          string           `json:"platform" api:"nullable"`
 	Prompt            string           `json:"prompt" api:"nullable"`
 	RawResponse       string           `json:"raw_response" api:"nullable"`
+	ReferenceAnswer   string           `json:"reference_answer" api:"nullable"`
 	RunDate           string           `json:"run_date" api:"nullable"`
 	Score             float64          `json:"score" api:"nullable"`
 	TokensUsed        int64            `json:"tokens_used" api:"nullable"`
@@ -106,7 +108,6 @@ type APIPerformanceRunGetResponseData struct {
 		ID                respjson.Field
 		APICallLog        respjson.Field
 		ConversationTurns respjson.Field
-		CostUsd           respjson.Field
 		CreatedAt         respjson.Field
 		ErrorMessage      respjson.Field
 		EvalID            respjson.Field
@@ -114,9 +115,11 @@ type APIPerformanceRunGetResponseData struct {
 		ExecutionStderr   respjson.Field
 		ExecutionStdout   respjson.Field
 		ExitCode          respjson.Field
+		ExpectedBehavior  respjson.Field
 		FailureReasons    respjson.Field
 		GeneratedFiles    respjson.Field
 		GraderResults     respjson.Field
+		Graders           respjson.Field
 		LatencyMs         respjson.Field
 		Model             respjson.Field
 		ModelType         respjson.Field
@@ -124,6 +127,7 @@ type APIPerformanceRunGetResponseData struct {
 		Platform          respjson.Field
 		Prompt            respjson.Field
 		RawResponse       respjson.Field
+		ReferenceAnswer   respjson.Field
 		RunDate           respjson.Field
 		Score             respjson.Field
 		TokensUsed        respjson.Field
@@ -212,44 +216,46 @@ func (r *APIPerformanceRunListResponse) UnmarshalJSON(data []byte) error {
 }
 
 type APIPerformanceRunListResponseData struct {
-	ID             string   `json:"id" api:"required"`
-	CostUsd        float64  `json:"cost_usd" api:"nullable"`
-	CreatedAt      string   `json:"created_at" api:"nullable"`
-	ErrorMessage   string   `json:"error_message" api:"nullable"`
-	EvalID         string   `json:"eval_id" api:"nullable"`
-	EvalType       string   `json:"eval_type" api:"nullable"`
-	FailureReasons []string `json:"failure_reasons" api:"nullable"`
-	LatencyMs      int64    `json:"latency_ms" api:"nullable"`
-	Model          string   `json:"model" api:"nullable"`
-	ModelType      string   `json:"model_type" api:"nullable"`
-	Passed         bool     `json:"passed" api:"nullable"`
-	Platform       string   `json:"platform" api:"nullable"`
-	Prompt         string   `json:"prompt" api:"nullable"`
-	RawResponse    string   `json:"raw_response" api:"nullable"`
-	RunDate        string   `json:"run_date" api:"nullable"`
-	Score          float64  `json:"score" api:"nullable"`
-	TokensUsed     int64    `json:"tokens_used" api:"nullable"`
+	ID               string           `json:"id" api:"required"`
+	CreatedAt        string           `json:"created_at" api:"nullable"`
+	ErrorMessage     string           `json:"error_message" api:"nullable"`
+	EvalID           string           `json:"eval_id" api:"nullable"`
+	EvalType         string           `json:"eval_type" api:"nullable"`
+	ExpectedBehavior string           `json:"expected_behavior" api:"nullable"`
+	FailureReasons   []string         `json:"failure_reasons" api:"nullable"`
+	Graders          []map[string]any `json:"graders"`
+	LatencyMs        int64            `json:"latency_ms" api:"nullable"`
+	Model            string           `json:"model" api:"nullable"`
+	ModelType        string           `json:"model_type" api:"nullable"`
+	Passed           bool             `json:"passed" api:"nullable"`
+	Platform         string           `json:"platform" api:"nullable"`
+	Prompt           string           `json:"prompt" api:"nullable"`
+	ReferenceAnswer  string           `json:"reference_answer" api:"nullable"`
+	RunDate          string           `json:"run_date" api:"nullable"`
+	Score            float64          `json:"score" api:"nullable"`
+	TokensUsed       int64            `json:"tokens_used" api:"nullable"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID             respjson.Field
-		CostUsd        respjson.Field
-		CreatedAt      respjson.Field
-		ErrorMessage   respjson.Field
-		EvalID         respjson.Field
-		EvalType       respjson.Field
-		FailureReasons respjson.Field
-		LatencyMs      respjson.Field
-		Model          respjson.Field
-		ModelType      respjson.Field
-		Passed         respjson.Field
-		Platform       respjson.Field
-		Prompt         respjson.Field
-		RawResponse    respjson.Field
-		RunDate        respjson.Field
-		Score          respjson.Field
-		TokensUsed     respjson.Field
-		ExtraFields    map[string]respjson.Field
-		raw            string
+		ID               respjson.Field
+		CreatedAt        respjson.Field
+		ErrorMessage     respjson.Field
+		EvalID           respjson.Field
+		EvalType         respjson.Field
+		ExpectedBehavior respjson.Field
+		FailureReasons   respjson.Field
+		Graders          respjson.Field
+		LatencyMs        respjson.Field
+		Model            respjson.Field
+		ModelType        respjson.Field
+		Passed           respjson.Field
+		Platform         respjson.Field
+		Prompt           respjson.Field
+		ReferenceAnswer  respjson.Field
+		RunDate          respjson.Field
+		Score            respjson.Field
+		TokensUsed       respjson.Field
+		ExtraFields      map[string]respjson.Field
+		raw              string
 	} `json:"-"`
 }
 
@@ -331,7 +337,6 @@ func (r *APIPerformanceRunListResponseOperationCategory) UnmarshalJSON(data []by
 
 type APIPerformanceRunListParams struct {
 	OperationID string           `query:"operation_id" api:"required" json:"-"`
-	IncludeRaw  param.Opt[bool]  `query:"include_raw,omitzero" json:"-"`
 	Limit       param.Opt[int64] `query:"limit,omitzero" json:"-"`
 	paramObj
 }

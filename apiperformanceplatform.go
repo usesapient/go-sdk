@@ -10,7 +10,6 @@ import (
 	"github.com/usesapient/go-sdk/internal/apijson"
 	"github.com/usesapient/go-sdk/internal/requestconfig"
 	"github.com/usesapient/go-sdk/option"
-	"github.com/usesapient/go-sdk/packages/param"
 	"github.com/usesapient/go-sdk/packages/respjson"
 )
 
@@ -42,10 +41,10 @@ func (r *APIPerformancePlatformService) List(ctx context.Context, opts ...option
 }
 
 // Estimate Platform Cost
-func (r *APIPerformancePlatformService) EstimateCost(ctx context.Context, body APIPerformancePlatformEstimateCostParams, opts ...option.RequestOption) (res *APIPerformancePlatformEstimateCostResponse, err error) {
+func (r *APIPerformancePlatformService) EstimateCost(ctx context.Context, opts ...option.RequestOption) (res *APIPerformancePlatformEstimateCostResponse, err error) {
 	opts = slices.Concat(r.Options, opts)
 	path := "v1/api-performance/platforms/estimate-cost"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return res, err
 }
 
@@ -68,24 +67,20 @@ func (r *APIPerformancePlatformListResponse) UnmarshalJSON(data []byte) error {
 }
 
 type APIPerformancePlatformListResponseAgentPlatform struct {
-	ID                  string  `json:"id" api:"required"`
-	Label               string  `json:"label" api:"required"`
-	Provider            string  `json:"provider" api:"required"`
-	Type                string  `json:"type" api:"required"`
-	CostEstimatePerEval float64 `json:"cost_estimate_per_eval" api:"nullable"`
-	CostPer1mInput      float64 `json:"cost_per_1m_input" api:"nullable"`
-	CostPer1mOutput     float64 `json:"cost_per_1m_output" api:"nullable"`
+	ID             string `json:"id" api:"required"`
+	CreditsPerEval int64  `json:"credits_per_eval" api:"required"`
+	Label          string `json:"label" api:"required"`
+	Provider       string `json:"provider" api:"required"`
+	Type           string `json:"type" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID                  respjson.Field
-		Label               respjson.Field
-		Provider            respjson.Field
-		Type                respjson.Field
-		CostEstimatePerEval respjson.Field
-		CostPer1mInput      respjson.Field
-		CostPer1mOutput     respjson.Field
-		ExtraFields         map[string]respjson.Field
-		raw                 string
+		ID             respjson.Field
+		CreditsPerEval respjson.Field
+		Label          respjson.Field
+		Provider       respjson.Field
+		Type           respjson.Field
+		ExtraFields    map[string]respjson.Field
+		raw            string
 	} `json:"-"`
 }
 
@@ -96,24 +91,20 @@ func (r *APIPerformancePlatformListResponseAgentPlatform) UnmarshalJSON(data []b
 }
 
 type APIPerformancePlatformListResponseTextPlatform struct {
-	ID                  string  `json:"id" api:"required"`
-	Label               string  `json:"label" api:"required"`
-	Provider            string  `json:"provider" api:"required"`
-	Type                string  `json:"type" api:"required"`
-	CostEstimatePerEval float64 `json:"cost_estimate_per_eval" api:"nullable"`
-	CostPer1mInput      float64 `json:"cost_per_1m_input" api:"nullable"`
-	CostPer1mOutput     float64 `json:"cost_per_1m_output" api:"nullable"`
+	ID             string `json:"id" api:"required"`
+	CreditsPerEval int64  `json:"credits_per_eval" api:"required"`
+	Label          string `json:"label" api:"required"`
+	Provider       string `json:"provider" api:"required"`
+	Type           string `json:"type" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID                  respjson.Field
-		Label               respjson.Field
-		Provider            respjson.Field
-		Type                respjson.Field
-		CostEstimatePerEval respjson.Field
-		CostPer1mInput      respjson.Field
-		CostPer1mOutput     respjson.Field
-		ExtraFields         map[string]respjson.Field
-		raw                 string
+		ID             respjson.Field
+		CreditsPerEval respjson.Field
+		Label          respjson.Field
+		Provider       respjson.Field
+		Type           respjson.Field
+		ExtraFields    map[string]respjson.Field
+		raw            string
 	} `json:"-"`
 }
 
@@ -124,14 +115,14 @@ func (r *APIPerformancePlatformListResponseTextPlatform) UnmarshalJSON(data []by
 }
 
 type APIPerformancePlatformEstimateCostResponse struct {
-	Costs     map[string]float64 `json:"costs" api:"required"`
-	EvalCount int64              `json:"eval_count" api:"required"`
+	Estimates    map[string]APIPerformancePlatformEstimateCostResponseEstimate `json:"estimates" api:"required"`
+	TotalCredits int64                                                         `json:"total_credits" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Costs       respjson.Field
-		EvalCount   respjson.Field
-		ExtraFields map[string]respjson.Field
-		raw         string
+		Estimates    respjson.Field
+		TotalCredits respjson.Field
+		ExtraFields  map[string]respjson.Field
+		raw          string
 	} `json:"-"`
 }
 
@@ -141,18 +132,22 @@ func (r *APIPerformancePlatformEstimateCostResponse) UnmarshalJSON(data []byte) 
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type APIPerformancePlatformEstimateCostParams struct {
-	EvalCount    int64            `json:"eval_count" api:"required"`
-	PlatformIDs  []string         `json:"platform_ids,omitzero" api:"required"`
-	InputTokens  param.Opt[int64] `json:"input_tokens,omitzero"`
-	OutputTokens param.Opt[int64] `json:"output_tokens,omitzero"`
-	paramObj
+type APIPerformancePlatformEstimateCostResponseEstimate struct {
+	CreditsPerEval int64 `json:"credits_per_eval" api:"required"`
+	EvalCount      int64 `json:"eval_count" api:"required"`
+	TotalCredits   int64 `json:"total_credits" api:"required"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		CreditsPerEval respjson.Field
+		EvalCount      respjson.Field
+		TotalCredits   respjson.Field
+		ExtraFields    map[string]respjson.Field
+		raw            string
+	} `json:"-"`
 }
 
-func (r APIPerformancePlatformEstimateCostParams) MarshalJSON() (data []byte, err error) {
-	type shadow APIPerformancePlatformEstimateCostParams
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *APIPerformancePlatformEstimateCostParams) UnmarshalJSON(data []byte) error {
+// Returns the unmodified JSON received from the API
+func (r APIPerformancePlatformEstimateCostResponseEstimate) RawJSON() string { return r.JSON.raw }
+func (r *APIPerformancePlatformEstimateCostResponseEstimate) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }

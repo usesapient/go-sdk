@@ -27,6 +27,7 @@ Response Types:
 - <a href="https://pkg.go.dev/github.com/usesapient/go-sdk">githubcomusesapientgosdk</a>.<a href="https://pkg.go.dev/github.com/usesapient/go-sdk#PromptUpdateResponse">PromptUpdateResponse</a>
 - <a href="https://pkg.go.dev/github.com/usesapient/go-sdk">githubcomusesapientgosdk</a>.<a href="https://pkg.go.dev/github.com/usesapient/go-sdk#PromptListResponse">PromptListResponse</a>
 - <a href="https://pkg.go.dev/github.com/usesapient/go-sdk">githubcomusesapientgosdk</a>.<a href="https://pkg.go.dev/github.com/usesapient/go-sdk#PromptDeleteResponse">PromptDeleteResponse</a>
+- <a href="https://pkg.go.dev/github.com/usesapient/go-sdk">githubcomusesapientgosdk</a>.<a href="https://pkg.go.dev/github.com/usesapient/go-sdk#PromptEstimateCostResponse">PromptEstimateCostResponse</a>
 
 Methods:
 
@@ -35,6 +36,7 @@ Methods:
 - <code title="patch /v1/prompts/{prompt_id}">client.Prompts.<a href="https://pkg.go.dev/github.com/usesapient/go-sdk#PromptService.Update">Update</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, promptID <a href="https://pkg.go.dev/builtin#string">string</a>, body <a href="https://pkg.go.dev/github.com/usesapient/go-sdk">githubcomusesapientgosdk</a>.<a href="https://pkg.go.dev/github.com/usesapient/go-sdk#PromptUpdateParams">PromptUpdateParams</a>) (\*<a href="https://pkg.go.dev/github.com/usesapient/go-sdk">githubcomusesapientgosdk</a>.<a href="https://pkg.go.dev/github.com/usesapient/go-sdk#PromptUpdateResponse">PromptUpdateResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 - <code title="get /v1/prompts">client.Prompts.<a href="https://pkg.go.dev/github.com/usesapient/go-sdk#PromptService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/usesapient/go-sdk">githubcomusesapientgosdk</a>.<a href="https://pkg.go.dev/github.com/usesapient/go-sdk#PromptListParams">PromptListParams</a>) (\*<a href="https://pkg.go.dev/github.com/usesapient/go-sdk">githubcomusesapientgosdk</a>.<a href="https://pkg.go.dev/github.com/usesapient/go-sdk#PromptListResponse">PromptListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 - <code title="delete /v1/prompts/{prompt_id}">client.Prompts.<a href="https://pkg.go.dev/github.com/usesapient/go-sdk#PromptService.Delete">Delete</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, promptID <a href="https://pkg.go.dev/builtin#string">string</a>) (\*<a href="https://pkg.go.dev/github.com/usesapient/go-sdk">githubcomusesapientgosdk</a>.<a href="https://pkg.go.dev/github.com/usesapient/go-sdk#PromptDeleteResponse">PromptDeleteResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /v1/prompts/estimate-cost">client.Prompts.<a href="https://pkg.go.dev/github.com/usesapient/go-sdk#PromptService.EstimateCost">EstimateCost</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>) (\*<a href="https://pkg.go.dev/github.com/usesapient/go-sdk">githubcomusesapientgosdk</a>.<a href="https://pkg.go.dev/github.com/usesapient/go-sdk#PromptEstimateCostResponse">PromptEstimateCostResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
 ## Topics
 
@@ -60,7 +62,7 @@ Response Types:
 
 Methods:
 
-- <code title="get /v1/prompts/platforms">client.Prompts.Platforms.<a href="https://pkg.go.dev/github.com/usesapient/go-sdk#PromptPlatformService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>) (\*<a href="https://pkg.go.dev/github.com/usesapient/go-sdk">githubcomusesapientgosdk</a>.<a href="https://pkg.go.dev/github.com/usesapient/go-sdk#PromptPlatformListResponse">PromptPlatformListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /v1/prompts/platforms">client.Prompts.Platforms.<a href="https://pkg.go.dev/github.com/usesapient/go-sdk#PromptPlatformService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>) (\*[]<a href="https://pkg.go.dev/github.com/usesapient/go-sdk">githubcomusesapientgosdk</a>.<a href="https://pkg.go.dev/github.com/usesapient/go-sdk#PromptPlatformListResponse">PromptPlatformListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
 # APIPerformance
 
@@ -74,7 +76,7 @@ Response Types:
 Methods:
 
 - <code title="get /v1/api-performance/platforms">client.APIPerformance.Platforms.<a href="https://pkg.go.dev/github.com/usesapient/go-sdk#APIPerformancePlatformService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>) (\*<a href="https://pkg.go.dev/github.com/usesapient/go-sdk">githubcomusesapientgosdk</a>.<a href="https://pkg.go.dev/github.com/usesapient/go-sdk#APIPerformancePlatformListResponse">APIPerformancePlatformListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
-- <code title="post /v1/api-performance/platforms/estimate-cost">client.APIPerformance.Platforms.<a href="https://pkg.go.dev/github.com/usesapient/go-sdk#APIPerformancePlatformService.EstimateCost">EstimateCost</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, body <a href="https://pkg.go.dev/github.com/usesapient/go-sdk">githubcomusesapientgosdk</a>.<a href="https://pkg.go.dev/github.com/usesapient/go-sdk#APIPerformancePlatformEstimateCostParams">APIPerformancePlatformEstimateCostParams</a>) (\*<a href="https://pkg.go.dev/github.com/usesapient/go-sdk">githubcomusesapientgosdk</a>.<a href="https://pkg.go.dev/github.com/usesapient/go-sdk#APIPerformancePlatformEstimateCostResponse">APIPerformancePlatformEstimateCostResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /v1/api-performance/platforms/estimate-cost">client.APIPerformance.Platforms.<a href="https://pkg.go.dev/github.com/usesapient/go-sdk#APIPerformancePlatformService.EstimateCost">EstimateCost</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>) (\*<a href="https://pkg.go.dev/github.com/usesapient/go-sdk">githubcomusesapientgosdk</a>.<a href="https://pkg.go.dev/github.com/usesapient/go-sdk#APIPerformancePlatformEstimateCostResponse">APIPerformancePlatformEstimateCostResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
 ## Interfaces
 
