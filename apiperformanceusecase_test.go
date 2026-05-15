@@ -1,0 +1,141 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+package githubcomusesapientgosdk_test
+
+import (
+	"context"
+	"errors"
+	"os"
+	"testing"
+
+	"github.com/usesapient/go-sdk"
+	"github.com/usesapient/go-sdk/internal/testutil"
+	"github.com/usesapient/go-sdk/option"
+)
+
+func TestAPIPerformanceUseCaseNewWithOptionalParams(t *testing.T) {
+	t.Skip("Mock server tests are disabled")
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := githubcomusesapientgosdk.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithAPIKey("My API Key"),
+	)
+	_, err := client.APIPerformance.UseCases.New(context.TODO(), githubcomusesapientgosdk.APIPerformanceUseCaseNewParams{
+		Prompt:       "x",
+		CategoryName: githubcomusesapientgosdk.String("category_name"),
+		Description:  githubcomusesapientgosdk.String("description"),
+	})
+	if err != nil {
+		var apierr *githubcomusesapientgosdk.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}
+
+func TestAPIPerformanceUseCaseGet(t *testing.T) {
+	t.Skip("Mock server tests are disabled")
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := githubcomusesapientgosdk.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithAPIKey("My API Key"),
+	)
+	_, err := client.APIPerformance.UseCases.Get(context.TODO(), "use_case_id")
+	if err != nil {
+		var apierr *githubcomusesapientgosdk.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}
+
+func TestAPIPerformanceUseCaseUpdateWithOptionalParams(t *testing.T) {
+	t.Skip("Mock server tests are disabled")
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := githubcomusesapientgosdk.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithAPIKey("My API Key"),
+	)
+	_, err := client.APIPerformance.UseCases.Update(
+		context.TODO(),
+		"use_case_id",
+		githubcomusesapientgosdk.APIPerformanceUseCaseUpdateParams{
+			CategoryName: githubcomusesapientgosdk.String("category_name"),
+			Description:  githubcomusesapientgosdk.String("description"),
+			Prompt:       githubcomusesapientgosdk.String("x"),
+		},
+	)
+	if err != nil {
+		var apierr *githubcomusesapientgosdk.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}
+
+func TestAPIPerformanceUseCaseList(t *testing.T) {
+	t.Skip("Mock server tests are disabled")
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := githubcomusesapientgosdk.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithAPIKey("My API Key"),
+	)
+	_, err := client.APIPerformance.UseCases.List(context.TODO())
+	if err != nil {
+		var apierr *githubcomusesapientgosdk.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}
+
+func TestAPIPerformanceUseCaseDelete(t *testing.T) {
+	t.Skip("Mock server tests are disabled")
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := githubcomusesapientgosdk.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithAPIKey("My API Key"),
+	)
+	_, err := client.APIPerformance.UseCases.Delete(context.TODO(), "use_case_id")
+	if err != nil {
+		var apierr *githubcomusesapientgosdk.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}

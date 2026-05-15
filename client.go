@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-package sapient
+package githubcomusesapientgosdk
 
 import (
 	"context"
@@ -9,35 +9,27 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/stainless-sdks/sapient-go/internal/requestconfig"
-	"github.com/stainless-sdks/sapient-go/option"
+	"github.com/usesapient/go-sdk/internal/requestconfig"
+	"github.com/usesapient/go-sdk/option"
 )
 
 // Client creates a struct with services and top level methods that help with
-// interacting with the sapient API. You should not instantiate this client
+// interacting with the Sapient API. You should not instantiate this client
 // directly, and instead use the [NewClient] method instead.
 type Client struct {
-	options      []option.RequestOption
-	Status       StatusService
-	Auth         AuthService
-	Context      ContextService
-	EvalRuns     EvalRunService
-	Prompts      PromptService
-	Workflows    WorkflowService
-	WorkflowRuns WorkflowRunService
-	API          APIService
+	Options        []option.RequestOption
+	Status         StatusService
+	Auth           AuthService
+	Prompts        PromptService
+	APIPerformance APIPerformanceService
 }
 
 // DefaultClientOptions read from the environment (SAPIENT_API_KEY,
-// SAPIENT_BEARER_TOKEN, SAPIENT_BASE_URL). This should be used to initialize new
-// clients.
+// SAPIENT_BASE_URL). This should be used to initialize new clients.
 func DefaultClientOptions() []option.RequestOption {
 	defaults := []option.RequestOption{option.WithHTTPClient(defaultHTTPClient()), option.WithEnvironmentProduction()}
 	if o, ok := os.LookupEnv("SAPIENT_BASE_URL"); ok {
 		defaults = append(defaults, option.WithBaseURL(o))
-	}
-	if o, ok := os.LookupEnv("SAPIENT_BEARER_TOKEN"); ok {
-		defaults = append(defaults, option.WithBearerToken(o))
 	}
 	if o, ok := os.LookupEnv("SAPIENT_API_KEY"); ok {
 		defaults = append(defaults, option.WithAPIKey(o))
@@ -54,22 +46,18 @@ func DefaultClientOptions() []option.RequestOption {
 }
 
 // NewClient generates a new client with the default option read from the
-// environment (SAPIENT_API_KEY, SAPIENT_BEARER_TOKEN, SAPIENT_BASE_URL). The
-// option passed in as arguments are applied after these default arguments, and all
-// option will be passed down to the services and requests that this client makes.
+// environment (SAPIENT_API_KEY, SAPIENT_BASE_URL). The option passed in as
+// arguments are applied after these default arguments, and all option will be
+// passed down to the services and requests that this client makes.
 func NewClient(opts ...option.RequestOption) (r Client) {
 	opts = append(DefaultClientOptions(), opts...)
 
-	r = Client{options: opts}
+	r = Client{Options: opts}
 
 	r.Status = NewStatusService(opts...)
 	r.Auth = NewAuthService(opts...)
-	r.Context = NewContextService(opts...)
-	r.EvalRuns = NewEvalRunService(opts...)
 	r.Prompts = NewPromptService(opts...)
-	r.Workflows = NewWorkflowService(opts...)
-	r.WorkflowRuns = NewWorkflowRunService(opts...)
-	r.API = NewAPIService(opts...)
+	r.APIPerformance = NewAPIPerformanceService(opts...)
 
 	return
 }
@@ -106,7 +94,7 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 // For even greater flexibility, see [option.WithResponseInto] and
 // [option.WithResponseBodyInto].
 func (r *Client) Execute(ctx context.Context, method string, path string, params any, res any, opts ...option.RequestOption) error {
-	opts = slices.Concat(r.options, opts)
+	opts = slices.Concat(r.Options, opts)
 	return requestconfig.ExecuteNewRequest(ctx, method, path, params, res, opts...)
 }
 

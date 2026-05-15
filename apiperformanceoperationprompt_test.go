@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-package sapient_test
+package githubcomusesapientgosdk_test
 
 import (
 	"context"
@@ -8,12 +8,12 @@ import (
 	"os"
 	"testing"
 
-	"github.com/stainless-sdks/sapient-go"
-	"github.com/stainless-sdks/sapient-go/internal/testutil"
-	"github.com/stainless-sdks/sapient-go/option"
+	"github.com/usesapient/go-sdk"
+	"github.com/usesapient/go-sdk/internal/testutil"
+	"github.com/usesapient/go-sdk/option"
 )
 
-func TestContextGetCompanyWithOptionalParams(t *testing.T) {
+func TestAPIPerformanceOperationPromptNewWithOptionalParams(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -22,22 +22,25 @@ func TestContextGetCompanyWithOptionalParams(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := sapient.NewClient(
+	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
-		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.Context.GetCompany(
+	_, err := client.APIPerformance.OperationPrompts.New(
 		context.TODO(),
-		"company",
-		sapient.ContextGetCompanyParams{
-			For:    sapient.String("for"),
-			Format: sapient.ContextGetCompanyParamsFormatJson,
-			Since:  sapient.String("since"),
+		"operation_id",
+		githubcomusesapientgosdk.APIPerformanceOperationPromptNewParams{
+			Prompt:           "x",
+			EvalType:         githubcomusesapientgosdk.String("x"),
+			ExpectedBehavior: githubcomusesapientgosdk.String("expected_behavior"),
+			Graders: []map[string]any{{
+				"foo": "bar",
+			}},
+			ReferenceAnswer: githubcomusesapientgosdk.String("reference_answer"),
 		},
 	)
 	if err != nil {
-		var apierr *sapient.Error
+		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}
@@ -45,7 +48,7 @@ func TestContextGetCompanyWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestContextCompanyWithOptionalParams(t *testing.T) {
+func TestAPIPerformanceOperationPromptList(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -54,22 +57,13 @@ func TestContextCompanyWithOptionalParams(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := sapient.NewClient(
+	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
-		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.Context.Company(
-		context.TODO(),
-		"company",
-		sapient.ContextCompanyParams{
-			For:    sapient.String("for"),
-			Format: sapient.ContextCompanyParamsFormatJson,
-			Since:  sapient.String("since"),
-		},
-	)
+	_, err := client.APIPerformance.OperationPrompts.List(context.TODO(), "operation_id")
 	if err != nil {
-		var apierr *sapient.Error
+		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}

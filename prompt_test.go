@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-package sapient_test
+package githubcomusesapientgosdk_test
 
 import (
 	"context"
@@ -8,12 +8,12 @@ import (
 	"os"
 	"testing"
 
-	"github.com/stainless-sdks/sapient-go"
-	"github.com/stainless-sdks/sapient-go/internal/testutil"
-	"github.com/stainless-sdks/sapient-go/option"
+	"github.com/usesapient/go-sdk"
+	"github.com/usesapient/go-sdk/internal/testutil"
+	"github.com/usesapient/go-sdk/option"
 )
 
-func TestPromptGenerateFromListWithOptionalParams(t *testing.T) {
+func TestPromptNewWithOptionalParams(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -22,26 +22,127 @@ func TestPromptGenerateFromListWithOptionalParams(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := sapient.NewClient(
+	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
-		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.Prompts.GenerateFromList(context.TODO(), sapient.PromptGenerateFromListParams{
-		Items: []sapient.PromptGenerateFromListParamsItem{{
-			Name:     "name",
-			Category: sapient.String("category"),
-			Domain:   sapient.String("domain"),
-			Notes:    sapient.String("notes"),
-		}},
-		CountPerItem:      sapient.Int(1),
-		Goal:              sapient.String("goal"),
-		IncludeAgentTasks: sapient.Bool(true),
-		Language:          sapient.String("language"),
-		Region:            sapient.String("region"),
+	_, err := client.Prompts.New(context.TODO(), githubcomusesapientgosdk.PromptNewParams{
+		Text:        "x",
+		TopicID:     "topic_id",
+		LanguageID:  githubcomusesapientgosdk.String("language_id"),
+		PlatformIDs: []string{"string"},
+		RegionID:    githubcomusesapientgosdk.String("region_id"),
 	})
 	if err != nil {
-		var apierr *sapient.Error
+		var apierr *githubcomusesapientgosdk.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}
+
+func TestPromptGet(t *testing.T) {
+	t.Skip("Mock server tests are disabled")
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := githubcomusesapientgosdk.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithAPIKey("My API Key"),
+	)
+	_, err := client.Prompts.Get(context.TODO(), "prompt_id")
+	if err != nil {
+		var apierr *githubcomusesapientgosdk.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}
+
+func TestPromptUpdateWithOptionalParams(t *testing.T) {
+	t.Skip("Mock server tests are disabled")
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := githubcomusesapientgosdk.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithAPIKey("My API Key"),
+	)
+	_, err := client.Prompts.Update(
+		context.TODO(),
+		"prompt_id",
+		githubcomusesapientgosdk.PromptUpdateParams{
+			IsActive:    githubcomusesapientgosdk.Bool(true),
+			LanguageID:  githubcomusesapientgosdk.String("language_id"),
+			PlatformIDs: []string{"string"},
+			RegionID:    githubcomusesapientgosdk.String("region_id"),
+			Text:        githubcomusesapientgosdk.String("x"),
+			TopicID:     githubcomusesapientgosdk.String("topic_id"),
+		},
+	)
+	if err != nil {
+		var apierr *githubcomusesapientgosdk.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}
+
+func TestPromptListWithOptionalParams(t *testing.T) {
+	t.Skip("Mock server tests are disabled")
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := githubcomusesapientgosdk.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithAPIKey("My API Key"),
+	)
+	_, err := client.Prompts.List(context.TODO(), githubcomusesapientgosdk.PromptListParams{
+		IncludeArchived: githubcomusesapientgosdk.Bool(true),
+		IsActive:        githubcomusesapientgosdk.Bool(true),
+		Status:          githubcomusesapientgosdk.String("archived"),
+		TopicID:         githubcomusesapientgosdk.String("topic_id"),
+	})
+	if err != nil {
+		var apierr *githubcomusesapientgosdk.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}
+
+func TestPromptDelete(t *testing.T) {
+	t.Skip("Mock server tests are disabled")
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := githubcomusesapientgosdk.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithAPIKey("My API Key"),
+	)
+	_, err := client.Prompts.Delete(context.TODO(), "prompt_id")
+	if err != nil {
+		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}

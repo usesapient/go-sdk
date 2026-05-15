@@ -14,7 +14,7 @@ import (
 	"encoding"
 	"encoding/base64"
 	"fmt"
-	"github.com/stainless-sdks/sapient-go/internal/encoding/json/shims"
+	"github.com/usesapient/go-sdk/internal/encoding/json/shims"
 	"reflect"
 	"strconv"
 	"strings"

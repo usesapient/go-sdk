@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-package sapient_test
+package githubcomusesapientgosdk_test
 
 import (
 	"context"
@@ -8,12 +8,12 @@ import (
 	"os"
 	"testing"
 
-	"github.com/stainless-sdks/sapient-go"
-	"github.com/stainless-sdks/sapient-go/internal/testutil"
-	"github.com/stainless-sdks/sapient-go/option"
+	"github.com/usesapient/go-sdk"
+	"github.com/usesapient/go-sdk/internal/testutil"
+	"github.com/usesapient/go-sdk/option"
 )
 
-func TestEvalRunGet(t *testing.T) {
+func TestAPIPerformancePromptGet(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -22,14 +22,13 @@ func TestEvalRunGet(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := sapient.NewClient(
+	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
-		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.EvalRuns.Get(context.TODO(), "run_id")
+	_, err := client.APIPerformance.Prompts.Get(context.TODO(), "prompt_id")
 	if err != nil {
-		var apierr *sapient.Error
+		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}
@@ -37,7 +36,7 @@ func TestEvalRunGet(t *testing.T) {
 	}
 }
 
-func TestEvalRunListWithOptionalParams(t *testing.T) {
+func TestAPIPerformancePromptUpdateWithOptionalParams(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -46,18 +45,25 @@ func TestEvalRunListWithOptionalParams(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := sapient.NewClient(
+	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
-		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.EvalRuns.List(context.TODO(), sapient.EvalRunListParams{
-		Company: "company",
-		Limit:   sapient.Int(1),
-		Since:   sapient.String("since"),
-	})
+	_, err := client.APIPerformance.Prompts.Update(
+		context.TODO(),
+		"prompt_id",
+		githubcomusesapientgosdk.APIPerformancePromptUpdateParams{
+			Enabled:          githubcomusesapientgosdk.Bool(true),
+			ExpectedBehavior: githubcomusesapientgosdk.String("expected_behavior"),
+			Graders: []map[string]any{{
+				"foo": "bar",
+			}},
+			Prompt:          githubcomusesapientgosdk.String("x"),
+			ReferenceAnswer: githubcomusesapientgosdk.String("reference_answer"),
+		},
+	)
 	if err != nil {
-		var apierr *sapient.Error
+		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}
@@ -65,7 +71,7 @@ func TestEvalRunListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestEvalRunDiagnoseWithOptionalParams(t *testing.T) {
+func TestAPIPerformancePromptDelete(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -74,20 +80,13 @@ func TestEvalRunDiagnoseWithOptionalParams(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := sapient.NewClient(
+	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
-		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.EvalRuns.Diagnose(context.TODO(), sapient.EvalRunDiagnoseParams{
-		Company:         "company",
-		Format:          sapient.EvalRunDiagnoseParamsFormatJson,
-		IncludeExamples: sapient.Bool(true),
-		MaxExamples:     sapient.Int(1),
-		Since:           sapient.String("since"),
-	})
+	_, err := client.APIPerformance.Prompts.Delete(context.TODO(), "prompt_id")
 	if err != nil {
-		var apierr *sapient.Error
+		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}

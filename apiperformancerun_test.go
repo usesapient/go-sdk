@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-package sapient_test
+package githubcomusesapientgosdk_test
 
 import (
 	"context"
@@ -8,12 +8,12 @@ import (
 	"os"
 	"testing"
 
-	"github.com/stainless-sdks/sapient-go"
-	"github.com/stainless-sdks/sapient-go/internal/testutil"
-	"github.com/stainless-sdks/sapient-go/option"
+	"github.com/usesapient/go-sdk"
+	"github.com/usesapient/go-sdk/internal/testutil"
+	"github.com/usesapient/go-sdk/option"
 )
 
-func TestAPIAPIPerformanceFailureAnalysisWithOptionalParams(t *testing.T) {
+func TestAPIPerformanceRunGet(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -22,20 +22,13 @@ func TestAPIAPIPerformanceFailureAnalysisWithOptionalParams(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := sapient.NewClient(
+	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
-		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.API.APIPerformance.FailureAnalysis(
-		context.TODO(),
-		"brand_id",
-		sapient.APIAPIPerformanceFailureAnalysisParams{
-			IntegrationID: sapient.String("integration_id"),
-		},
-	)
+	_, err := client.APIPerformance.Runs.Get(context.TODO(), "run_id")
 	if err != nil {
-		var apierr *sapient.Error
+		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}
@@ -43,7 +36,7 @@ func TestAPIAPIPerformanceFailureAnalysisWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestAPIAPIPerformanceLatestRunsWithOptionalParams(t *testing.T) {
+func TestAPIPerformanceRunListWithOptionalParams(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -52,20 +45,17 @@ func TestAPIAPIPerformanceLatestRunsWithOptionalParams(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := sapient.NewClient(
+	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
-		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.API.APIPerformance.LatestRuns(
-		context.TODO(),
-		"brand_id",
-		sapient.APIAPIPerformanceLatestRunsParams{
-			Limit: sapient.Int(1),
-		},
-	)
+	_, err := client.APIPerformance.Runs.List(context.TODO(), githubcomusesapientgosdk.APIPerformanceRunListParams{
+		OperationID: "x",
+		IncludeRaw:  githubcomusesapientgosdk.Bool(true),
+		Limit:       githubcomusesapientgosdk.Int(1),
+	})
 	if err != nil {
-		var apierr *sapient.Error
+		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}

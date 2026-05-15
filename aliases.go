@@ -1,10 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-package sapient
+package githubcomusesapientgosdk
 
 import (
-	"github.com/stainless-sdks/sapient-go/internal/apierror"
-	"github.com/stainless-sdks/sapient-go/packages/param"
+	"github.com/usesapient/go-sdk/internal/apierror"
+	"github.com/usesapient/go-sdk/packages/param"
 )
 
 // aliased to make [param.APIUnion] private when embedding

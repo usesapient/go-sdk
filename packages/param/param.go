@@ -2,7 +2,7 @@ package param
 
 import (
 	"encoding/json"
-	"github.com/stainless-sdks/sapient-go/internal/encoding/json/sentinel"
+	"github.com/usesapient/go-sdk/internal/encoding/json/sentinel"
 	"reflect"
 )
 
