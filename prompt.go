@@ -93,6 +93,14 @@ func (r *PromptService) Delete(ctx context.Context, promptID string, opts ...opt
 	return res, err
 }
 
+// Estimate Prompt Cost
+func (r *PromptService) EstimateCost(ctx context.Context, opts ...option.RequestOption) (res *PromptEstimateCostResponse, err error) {
+	opts = slices.Concat(r.Options, opts)
+	path := "v1/prompts/estimate-cost"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
+	return res, err
+}
+
 type PromptNewResponse struct {
 	ID         string                      `json:"id" api:"required"`
 	Text       string                      `json:"text" api:"required"`
@@ -539,14 +547,64 @@ func (r *PromptListResponseDataTopic) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type PromptDeleteResponse = any
+type PromptDeleteResponse struct {
+	Ok bool `json:"ok" api:"required"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		Ok          respjson.Field
+		ExtraFields map[string]respjson.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r PromptDeleteResponse) RawJSON() string { return r.JSON.raw }
+func (r *PromptDeleteResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type PromptEstimateCostResponse struct {
+	Estimates    map[string]PromptEstimateCostResponseEstimate `json:"estimates" api:"required"`
+	TotalCredits int64                                         `json:"total_credits" api:"required"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		Estimates    respjson.Field
+		TotalCredits respjson.Field
+		ExtraFields  map[string]respjson.Field
+		raw          string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r PromptEstimateCostResponse) RawJSON() string { return r.JSON.raw }
+func (r *PromptEstimateCostResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type PromptEstimateCostResponseEstimate struct {
+	CreditsPerPrompt int64 `json:"credits_per_prompt" api:"required"`
+	PromptCount      int64 `json:"prompt_count" api:"required"`
+	TotalCredits     int64 `json:"total_credits" api:"required"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		CreditsPerPrompt respjson.Field
+		PromptCount      respjson.Field
+		TotalCredits     respjson.Field
+		ExtraFields      map[string]respjson.Field
+		raw              string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r PromptEstimateCostResponseEstimate) RawJSON() string { return r.JSON.raw }
+func (r *PromptEstimateCostResponseEstimate) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type PromptNewParams struct {
-	Text        string            `json:"text" api:"required"`
-	TopicID     string            `json:"topic_id" api:"required"`
-	LanguageID  param.Opt[string] `json:"language_id,omitzero"`
-	RegionID    param.Opt[string] `json:"region_id,omitzero"`
-	PlatformIDs []string          `json:"platform_ids,omitzero"`
+	Text        string   `json:"text" api:"required"`
+	TopicID     string   `json:"topic_id" api:"required"`
+	PlatformIDs []string `json:"platform_ids,omitzero"`
 	paramObj
 }
 
@@ -560,8 +618,6 @@ func (r *PromptNewParams) UnmarshalJSON(data []byte) error {
 
 type PromptUpdateParams struct {
 	IsActive    param.Opt[bool]   `json:"is_active,omitzero"`
-	LanguageID  param.Opt[string] `json:"language_id,omitzero"`
-	RegionID    param.Opt[string] `json:"region_id,omitzero"`
 	Text        param.Opt[string] `json:"text,omitzero"`
 	TopicID     param.Opt[string] `json:"topic_id,omitzero"`
 	PlatformIDs []string          `json:"platform_ids,omitzero"`

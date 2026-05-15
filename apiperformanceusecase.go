@@ -271,7 +271,21 @@ func (r *APIPerformanceUseCaseListResponseCategory) UnmarshalJSON(data []byte) e
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type APIPerformanceUseCaseDeleteResponse = any
+type APIPerformanceUseCaseDeleteResponse struct {
+	Ok bool `json:"ok" api:"required"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		Ok          respjson.Field
+		ExtraFields map[string]respjson.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r APIPerformanceUseCaseDeleteResponse) RawJSON() string { return r.JSON.raw }
+func (r *APIPerformanceUseCaseDeleteResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type APIPerformanceUseCaseNewParams struct {
 	Prompt       string            `json:"prompt" api:"required"`

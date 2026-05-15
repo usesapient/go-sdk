@@ -29,9 +29,7 @@ func TestPromptNewWithOptionalParams(t *testing.T) {
 	_, err := client.Prompts.New(context.TODO(), githubcomusesapientgosdk.PromptNewParams{
 		Text:        "x",
 		TopicID:     "topic_id",
-		LanguageID:  githubcomusesapientgosdk.String("language_id"),
 		PlatformIDs: []string{"string"},
-		RegionID:    githubcomusesapientgosdk.String("region_id"),
 	})
 	if err != nil {
 		var apierr *githubcomusesapientgosdk.Error
@@ -83,9 +81,7 @@ func TestPromptUpdateWithOptionalParams(t *testing.T) {
 		"prompt_id",
 		githubcomusesapientgosdk.PromptUpdateParams{
 			IsActive:    githubcomusesapientgosdk.Bool(true),
-			LanguageID:  githubcomusesapientgosdk.String("language_id"),
 			PlatformIDs: []string{"string"},
-			RegionID:    githubcomusesapientgosdk.String("region_id"),
 			Text:        githubcomusesapientgosdk.String("x"),
 			TopicID:     githubcomusesapientgosdk.String("topic_id"),
 		},
@@ -141,6 +137,29 @@ func TestPromptDelete(t *testing.T) {
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.Prompts.Delete(context.TODO(), "prompt_id")
+	if err != nil {
+		var apierr *githubcomusesapientgosdk.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}
+
+func TestPromptEstimateCost(t *testing.T) {
+	t.Skip("Mock server tests are disabled")
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := githubcomusesapientgosdk.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithAPIKey("My API Key"),
+	)
+	_, err := client.Prompts.EstimateCost(context.TODO())
 	if err != nil {
 		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
