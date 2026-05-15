@@ -13,7 +13,7 @@ import (
 	"github.com/usesapient/go-sdk/option"
 )
 
-func TestPromptNewWithOptionalParams(t *testing.T) {
+func TestPromptTopicNew(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -26,12 +26,8 @@ func TestPromptNewWithOptionalParams(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.Prompts.New(context.TODO(), githubcomusesapientgosdk.PromptNewParams{
-		Text:        "x",
-		TopicID:     "topic_id",
-		LanguageID:  githubcomusesapientgosdk.String("language_id"),
-		PlatformIDs: []string{"string"},
-		RegionID:    githubcomusesapientgosdk.String("region_id"),
+	_, err := client.Prompts.Topics.New(context.TODO(), githubcomusesapientgosdk.PromptTopicNewParams{
+		Name: "x",
 	})
 	if err != nil {
 		var apierr *githubcomusesapientgosdk.Error
@@ -42,7 +38,7 @@ func TestPromptNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestPromptGet(t *testing.T) {
+func TestPromptTopicUpdate(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -55,39 +51,11 @@ func TestPromptGet(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.Prompts.Get(context.TODO(), "prompt_id")
-	if err != nil {
-		var apierr *githubcomusesapientgosdk.Error
-		if errors.As(err, &apierr) {
-			t.Log(string(apierr.DumpRequest(true)))
-		}
-		t.Fatalf("err should be nil: %s", err.Error())
-	}
-}
-
-func TestPromptUpdateWithOptionalParams(t *testing.T) {
-	t.Skip("Mock server tests are disabled")
-	baseURL := "http://localhost:4010"
-	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
-		baseURL = envURL
-	}
-	if !testutil.CheckTestServer(t, baseURL) {
-		return
-	}
-	client := githubcomusesapientgosdk.NewClient(
-		option.WithBaseURL(baseURL),
-		option.WithAPIKey("My API Key"),
-	)
-	_, err := client.Prompts.Update(
+	_, err := client.Prompts.Topics.Update(
 		context.TODO(),
-		"prompt_id",
-		githubcomusesapientgosdk.PromptUpdateParams{
-			IsActive:    githubcomusesapientgosdk.Bool(true),
-			LanguageID:  githubcomusesapientgosdk.String("language_id"),
-			PlatformIDs: []string{"string"},
-			RegionID:    githubcomusesapientgosdk.String("region_id"),
-			Text:        githubcomusesapientgosdk.String("x"),
-			TopicID:     githubcomusesapientgosdk.String("topic_id"),
+		"topic_id",
+		githubcomusesapientgosdk.PromptTopicUpdateParams{
+			Name: "x",
 		},
 	)
 	if err != nil {
@@ -99,7 +67,7 @@ func TestPromptUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestPromptListWithOptionalParams(t *testing.T) {
+func TestPromptTopicList(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -112,12 +80,7 @@ func TestPromptListWithOptionalParams(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.Prompts.List(context.TODO(), githubcomusesapientgosdk.PromptListParams{
-		IncludeArchived: githubcomusesapientgosdk.Bool(true),
-		IsActive:        githubcomusesapientgosdk.Bool(true),
-		Status:          githubcomusesapientgosdk.String("archived"),
-		TopicID:         githubcomusesapientgosdk.String("topic_id"),
-	})
+	_, err := client.Prompts.Topics.List(context.TODO())
 	if err != nil {
 		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
@@ -127,7 +90,7 @@ func TestPromptListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestPromptDelete(t *testing.T) {
+func TestPromptTopicDelete(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -140,7 +103,7 @@ func TestPromptDelete(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.Prompts.Delete(context.TODO(), "prompt_id")
+	_, err := client.Prompts.Topics.Delete(context.TODO(), "topic_id")
 	if err != nil {
 		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {

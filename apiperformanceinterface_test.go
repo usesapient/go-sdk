@@ -13,7 +13,7 @@ import (
 	"github.com/usesapient/go-sdk/option"
 )
 
-func TestAPILeaderboardListCompaniesWithOptionalParams(t *testing.T) {
+func TestAPIPerformanceInterfaceList(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -26,10 +26,7 @@ func TestAPILeaderboardListCompaniesWithOptionalParams(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.API.Leaderboard.ListCompanies(context.TODO(), githubcomusesapientgosdk.APILeaderboardListCompaniesParams{
-		Category: githubcomusesapientgosdk.String("category"),
-		Limit:    githubcomusesapientgosdk.Int(1),
-	})
+	_, err := client.APIPerformance.Interfaces.List(context.TODO())
 	if err != nil {
 		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {

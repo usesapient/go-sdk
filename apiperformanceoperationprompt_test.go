@@ -13,7 +13,7 @@ import (
 	"github.com/usesapient/go-sdk/option"
 )
 
-func TestEvalRunGet(t *testing.T) {
+func TestAPIPerformanceOperationPromptNewWithOptionalParams(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -26,7 +26,19 @@ func TestEvalRunGet(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.EvalRuns.Get(context.TODO(), "run_id")
+	_, err := client.APIPerformance.OperationPrompts.New(
+		context.TODO(),
+		"operation_id",
+		githubcomusesapientgosdk.APIPerformanceOperationPromptNewParams{
+			Prompt:           "x",
+			EvalType:         githubcomusesapientgosdk.String("x"),
+			ExpectedBehavior: githubcomusesapientgosdk.String("expected_behavior"),
+			Graders: []map[string]any{{
+				"foo": "bar",
+			}},
+			ReferenceAnswer: githubcomusesapientgosdk.String("reference_answer"),
+		},
+	)
 	if err != nil {
 		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
@@ -36,7 +48,7 @@ func TestEvalRunGet(t *testing.T) {
 	}
 }
 
-func TestEvalRunListWithOptionalParams(t *testing.T) {
+func TestAPIPerformanceOperationPromptList(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -49,40 +61,7 @@ func TestEvalRunListWithOptionalParams(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.EvalRuns.List(context.TODO(), githubcomusesapientgosdk.EvalRunListParams{
-		Company: "company",
-		Limit:   githubcomusesapientgosdk.Int(1),
-		Since:   githubcomusesapientgosdk.String("since"),
-	})
-	if err != nil {
-		var apierr *githubcomusesapientgosdk.Error
-		if errors.As(err, &apierr) {
-			t.Log(string(apierr.DumpRequest(true)))
-		}
-		t.Fatalf("err should be nil: %s", err.Error())
-	}
-}
-
-func TestEvalRunDiagnoseWithOptionalParams(t *testing.T) {
-	t.Skip("Mock server tests are disabled")
-	baseURL := "http://localhost:4010"
-	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
-		baseURL = envURL
-	}
-	if !testutil.CheckTestServer(t, baseURL) {
-		return
-	}
-	client := githubcomusesapientgosdk.NewClient(
-		option.WithBaseURL(baseURL),
-		option.WithAPIKey("My API Key"),
-	)
-	_, err := client.EvalRuns.Diagnose(context.TODO(), githubcomusesapientgosdk.EvalRunDiagnoseParams{
-		Company:         "company",
-		Format:          githubcomusesapientgosdk.EvalRunDiagnoseParamsFormatJson,
-		IncludeExamples: githubcomusesapientgosdk.Bool(true),
-		MaxExamples:     githubcomusesapientgosdk.Int(1),
-		Since:           githubcomusesapientgosdk.String("since"),
-	})
+	_, err := client.APIPerformance.OperationPrompts.List(context.TODO(), "operation_id")
 	if err != nil {
 		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
