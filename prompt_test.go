@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-package sapient_test
+package githubcomusesapientgosdk_test
 
 import (
 	"context"
@@ -22,26 +22,26 @@ func TestPromptGenerateFromListWithOptionalParams(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := sapient.NewClient(
+	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
 		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.Prompts.GenerateFromList(context.TODO(), sapient.PromptGenerateFromListParams{
-		Items: []sapient.PromptGenerateFromListParamsItem{{
+	_, err := client.Prompts.GenerateFromList(context.TODO(), githubcomusesapientgosdk.PromptGenerateFromListParams{
+		Items: []githubcomusesapientgosdk.PromptGenerateFromListParamsItem{{
 			Name:     "name",
-			Category: sapient.String("category"),
-			Domain:   sapient.String("domain"),
-			Notes:    sapient.String("notes"),
+			Category: githubcomusesapientgosdk.String("category"),
+			Domain:   githubcomusesapientgosdk.String("domain"),
+			Notes:    githubcomusesapientgosdk.String("notes"),
 		}},
-		CountPerItem:      sapient.Int(1),
-		Goal:              sapient.String("goal"),
-		IncludeAgentTasks: sapient.Bool(true),
-		Language:          sapient.String("language"),
-		Region:            sapient.String("region"),
+		CountPerItem:      githubcomusesapientgosdk.Int(1),
+		Goal:              githubcomusesapientgosdk.String("goal"),
+		IncludeAgentTasks: githubcomusesapientgosdk.Bool(true),
+		Language:          githubcomusesapientgosdk.String("language"),
+		Region:            githubcomusesapientgosdk.String("region"),
 	})
 	if err != nil {
-		var apierr *sapient.Error
+		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}

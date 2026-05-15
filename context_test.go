@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-package sapient_test
+package githubcomusesapientgosdk_test
 
 import (
 	"context"
@@ -22,7 +22,7 @@ func TestContextGetCompanyWithOptionalParams(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := sapient.NewClient(
+	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
 		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
@@ -30,14 +30,14 @@ func TestContextGetCompanyWithOptionalParams(t *testing.T) {
 	_, err := client.Context.GetCompany(
 		context.TODO(),
 		"company",
-		sapient.ContextGetCompanyParams{
-			For:    sapient.String("for"),
-			Format: sapient.ContextGetCompanyParamsFormatJson,
-			Since:  sapient.String("since"),
+		githubcomusesapientgosdk.ContextGetCompanyParams{
+			For:    githubcomusesapientgosdk.String("for"),
+			Format: githubcomusesapientgosdk.ContextGetCompanyParamsFormatJson,
+			Since:  githubcomusesapientgosdk.String("since"),
 		},
 	)
 	if err != nil {
-		var apierr *sapient.Error
+		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}
@@ -54,7 +54,7 @@ func TestContextCompanyWithOptionalParams(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := sapient.NewClient(
+	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
 		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
@@ -62,14 +62,14 @@ func TestContextCompanyWithOptionalParams(t *testing.T) {
 	_, err := client.Context.Company(
 		context.TODO(),
 		"company",
-		sapient.ContextCompanyParams{
-			For:    sapient.String("for"),
-			Format: sapient.ContextCompanyParamsFormatJson,
-			Since:  sapient.String("since"),
+		githubcomusesapientgosdk.ContextCompanyParams{
+			For:    githubcomusesapientgosdk.String("for"),
+			Format: githubcomusesapientgosdk.ContextCompanyParamsFormatJson,
+			Since:  githubcomusesapientgosdk.String("since"),
 		},
 	)
 	if err != nil {
-		var apierr *sapient.Error
+		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}

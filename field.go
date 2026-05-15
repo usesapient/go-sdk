@@ -1,4 +1,4 @@
-package sapient
+package githubcomusesapientgosdk
 
 import (
 	"github.com/usesapient/go-sdk/packages/param"

@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-package sapient_test
+package githubcomusesapientgosdk_test
 
 import (
 	"context"
@@ -22,14 +22,14 @@ func TestEvalRunGet(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := sapient.NewClient(
+	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
 		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.EvalRuns.Get(context.TODO(), "run_id")
 	if err != nil {
-		var apierr *sapient.Error
+		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}
@@ -46,18 +46,18 @@ func TestEvalRunListWithOptionalParams(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := sapient.NewClient(
+	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
 		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.EvalRuns.List(context.TODO(), sapient.EvalRunListParams{
+	_, err := client.EvalRuns.List(context.TODO(), githubcomusesapientgosdk.EvalRunListParams{
 		Company: "company",
-		Limit:   sapient.Int(1),
-		Since:   sapient.String("since"),
+		Limit:   githubcomusesapientgosdk.Int(1),
+		Since:   githubcomusesapientgosdk.String("since"),
 	})
 	if err != nil {
-		var apierr *sapient.Error
+		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}
@@ -74,20 +74,20 @@ func TestEvalRunDiagnoseWithOptionalParams(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := sapient.NewClient(
+	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
 		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.EvalRuns.Diagnose(context.TODO(), sapient.EvalRunDiagnoseParams{
+	_, err := client.EvalRuns.Diagnose(context.TODO(), githubcomusesapientgosdk.EvalRunDiagnoseParams{
 		Company:         "company",
-		Format:          sapient.EvalRunDiagnoseParamsFormatJson,
-		IncludeExamples: sapient.Bool(true),
-		MaxExamples:     sapient.Int(1),
-		Since:           sapient.String("since"),
+		Format:          githubcomusesapientgosdk.EvalRunDiagnoseParamsFormatJson,
+		IncludeExamples: githubcomusesapientgosdk.Bool(true),
+		MaxExamples:     githubcomusesapientgosdk.Int(1),
+		Since:           githubcomusesapientgosdk.String("since"),
 	})
 	if err != nil {
-		var apierr *sapient.Error
+		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}
