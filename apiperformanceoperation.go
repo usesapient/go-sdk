@@ -297,7 +297,21 @@ func (r *APIPerformanceOperationListResponseCategory) UnmarshalJSON(data []byte)
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type APIPerformanceOperationDeleteResponse = any
+type APIPerformanceOperationDeleteResponse struct {
+	Ok bool `json:"ok" api:"required"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		Ok          respjson.Field
+		ExtraFields map[string]respjson.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r APIPerformanceOperationDeleteResponse) RawJSON() string { return r.JSON.raw }
+func (r *APIPerformanceOperationDeleteResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type APIPerformanceOperationNewParams struct {
 	Method             string            `json:"method" api:"required"`

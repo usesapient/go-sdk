@@ -135,7 +135,21 @@ func (r *APIPerformancePromptUpdateResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type APIPerformancePromptDeleteResponse = any
+type APIPerformancePromptDeleteResponse struct {
+	Ok bool `json:"ok" api:"required"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		Ok          respjson.Field
+		ExtraFields map[string]respjson.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r APIPerformancePromptDeleteResponse) RawJSON() string { return r.JSON.raw }
+func (r *APIPerformancePromptDeleteResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type APIPerformancePromptUpdateParams struct {
 	Enabled          param.Opt[bool]   `json:"enabled,omitzero"`

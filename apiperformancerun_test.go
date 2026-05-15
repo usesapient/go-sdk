@@ -51,7 +51,6 @@ func TestAPIPerformanceRunListWithOptionalParams(t *testing.T) {
 	)
 	_, err := client.APIPerformance.Runs.List(context.TODO(), githubcomusesapientgosdk.APIPerformanceRunListParams{
 		OperationID: "x",
-		IncludeRaw:  githubcomusesapientgosdk.Bool(true),
 		Limit:       githubcomusesapientgosdk.Int(1),
 	})
 	if err != nil {
