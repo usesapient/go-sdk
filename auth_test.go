@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-package sapient_test
+package githubcomusesapientgosdk_test
 
 import (
 	"context"
@@ -22,14 +22,14 @@ func TestAuthGetStatus(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := sapient.NewClient(
+	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
 		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.Auth.GetStatus(context.TODO())
 	if err != nil {
-		var apierr *sapient.Error
+		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}
@@ -46,14 +46,14 @@ func TestAuthStatus(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := sapient.NewClient(
+	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
 		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.Auth.Status(context.TODO())
 	if err != nil {
-		var apierr *sapient.Error
+		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}

@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-package sapient_test
+package githubcomusesapientgosdk_test
 
 import (
 	"context"
@@ -22,18 +22,18 @@ func TestAPIJobListJobsWithOptionalParams(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := sapient.NewClient(
+	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
 		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.API.Jobs.ListJobs(context.TODO(), sapient.APIJobListJobsParams{
-		Limit:  sapient.Int(1),
-		Status: sapient.String("status"),
-		Type:   sapient.String("type"),
+	_, err := client.API.Jobs.ListJobs(context.TODO(), githubcomusesapientgosdk.APIJobListJobsParams{
+		Limit:  githubcomusesapientgosdk.Int(1),
+		Status: githubcomusesapientgosdk.String("status"),
+		Type:   githubcomusesapientgosdk.String("type"),
 	})
 	if err != nil {
-		var apierr *sapient.Error
+		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}
@@ -50,14 +50,14 @@ func TestAPIJobGetJob(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := sapient.NewClient(
+	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
 		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.API.Jobs.GetJob(context.TODO(), "job_id")
 	if err != nil {
-		var apierr *sapient.Error
+		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}
@@ -74,18 +74,18 @@ func TestAPIJobListWithOptionalParams(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := sapient.NewClient(
+	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
 		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.API.Jobs.List(context.TODO(), sapient.APIJobListParams{
-		Limit:  sapient.Int(1),
-		Status: sapient.String("status"),
-		Type:   sapient.String("type"),
+	_, err := client.API.Jobs.List(context.TODO(), githubcomusesapientgosdk.APIJobListParams{
+		Limit:  githubcomusesapientgosdk.Int(1),
+		Status: githubcomusesapientgosdk.String("status"),
+		Type:   githubcomusesapientgosdk.String("type"),
 	})
 	if err != nil {
-		var apierr *sapient.Error
+		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}
@@ -102,14 +102,14 @@ func TestAPIJobGet(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := sapient.NewClient(
+	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
 		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.API.Jobs.Get(context.TODO(), "job_id")
 	if err != nil {
-		var apierr *sapient.Error
+		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}

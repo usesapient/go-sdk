@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-package sapient_test
+package githubcomusesapientgosdk_test
 
 import (
 	"context"
@@ -22,14 +22,14 @@ func TestWorkflowNewWithOptionalParams(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := sapient.NewClient(
+	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
 		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.Workflows.New(context.TODO(), sapient.WorkflowNewParams{
+	_, err := client.Workflows.New(context.TODO(), githubcomusesapientgosdk.WorkflowNewParams{
 		Name:        "name",
-		Description: sapient.String("description"),
+		Description: githubcomusesapientgosdk.String("description"),
 		Metadata: map[string]any{
 			"foo": "bar",
 		},
@@ -38,7 +38,7 @@ func TestWorkflowNewWithOptionalParams(t *testing.T) {
 		}},
 	})
 	if err != nil {
-		var apierr *sapient.Error
+		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}
@@ -55,14 +55,14 @@ func TestWorkflowGet(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := sapient.NewClient(
+	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
 		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.Workflows.Get(context.TODO(), "workflow_id")
 	if err != nil {
-		var apierr *sapient.Error
+		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}
@@ -79,7 +79,7 @@ func TestWorkflowRunWithOptionalParams(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := sapient.NewClient(
+	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
 		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
@@ -87,16 +87,16 @@ func TestWorkflowRunWithOptionalParams(t *testing.T) {
 	_, err := client.Workflows.Run(
 		context.TODO(),
 		"workflow_id",
-		sapient.WorkflowRunParams{
+		githubcomusesapientgosdk.WorkflowRunParams{
 			Input: map[string]any{
 				"foo": "bar",
 			},
-			Watch:      sapient.Bool(true),
-			WorkflowID: sapient.String("workflow_id"),
+			Watch:      githubcomusesapientgosdk.Bool(true),
+			WorkflowID: githubcomusesapientgosdk.String("workflow_id"),
 		},
 	)
 	if err != nil {
-		var apierr *sapient.Error
+		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}

@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-package sapient_test
+package githubcomusesapientgosdk_test
 
 import (
 	"context"
@@ -22,7 +22,7 @@ func TestAPIAPIPerformanceFailureAnalysisWithOptionalParams(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := sapient.NewClient(
+	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
 		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
@@ -30,12 +30,12 @@ func TestAPIAPIPerformanceFailureAnalysisWithOptionalParams(t *testing.T) {
 	_, err := client.API.APIPerformance.FailureAnalysis(
 		context.TODO(),
 		"brand_id",
-		sapient.APIAPIPerformanceFailureAnalysisParams{
-			IntegrationID: sapient.String("integration_id"),
+		githubcomusesapientgosdk.APIAPIPerformanceFailureAnalysisParams{
+			IntegrationID: githubcomusesapientgosdk.String("integration_id"),
 		},
 	)
 	if err != nil {
-		var apierr *sapient.Error
+		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}
@@ -52,7 +52,7 @@ func TestAPIAPIPerformanceLatestRunsWithOptionalParams(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := sapient.NewClient(
+	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
 		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
@@ -60,12 +60,12 @@ func TestAPIAPIPerformanceLatestRunsWithOptionalParams(t *testing.T) {
 	_, err := client.API.APIPerformance.LatestRuns(
 		context.TODO(),
 		"brand_id",
-		sapient.APIAPIPerformanceLatestRunsParams{
-			Limit: sapient.Int(1),
+		githubcomusesapientgosdk.APIAPIPerformanceLatestRunsParams{
+			Limit: githubcomusesapientgosdk.Int(1),
 		},
 	)
 	if err != nil {
-		var apierr *sapient.Error
+		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}
