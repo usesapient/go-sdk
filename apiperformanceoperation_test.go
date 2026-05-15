@@ -13,7 +13,7 @@ import (
 	"github.com/usesapient/go-sdk/option"
 )
 
-func TestPromptNewWithOptionalParams(t *testing.T) {
+func TestAPIPerformanceOperationNewWithOptionalParams(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -26,12 +26,14 @@ func TestPromptNewWithOptionalParams(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.Prompts.New(context.TODO(), githubcomusesapientgosdk.PromptNewParams{
-		Text:        "x",
-		TopicID:     "topic_id",
-		LanguageID:  githubcomusesapientgosdk.String("language_id"),
-		PlatformIDs: []string{"string"},
-		RegionID:    githubcomusesapientgosdk.String("region_id"),
+	_, err := client.APIPerformance.Operations.New(context.TODO(), githubcomusesapientgosdk.APIPerformanceOperationNewParams{
+		Method:             "x",
+		Path:               "x",
+		CategoryName:       githubcomusesapientgosdk.String("category_name"),
+		CategorySlug:       githubcomusesapientgosdk.String("category_slug"),
+		Description:        githubcomusesapientgosdk.String("description"),
+		InterfaceID:        githubcomusesapientgosdk.String("interface_id"),
+		OpenAPIOperationID: githubcomusesapientgosdk.String("openapi_operation_id"),
 	})
 	if err != nil {
 		var apierr *githubcomusesapientgosdk.Error
@@ -42,7 +44,7 @@ func TestPromptNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestPromptGet(t *testing.T) {
+func TestAPIPerformanceOperationGet(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -55,7 +57,7 @@ func TestPromptGet(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.Prompts.Get(context.TODO(), "prompt_id")
+	_, err := client.APIPerformance.Operations.Get(context.TODO(), "operation_id")
 	if err != nil {
 		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
@@ -65,7 +67,7 @@ func TestPromptGet(t *testing.T) {
 	}
 }
 
-func TestPromptUpdateWithOptionalParams(t *testing.T) {
+func TestAPIPerformanceOperationUpdateWithOptionalParams(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -78,16 +80,17 @@ func TestPromptUpdateWithOptionalParams(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.Prompts.Update(
+	_, err := client.APIPerformance.Operations.Update(
 		context.TODO(),
-		"prompt_id",
-		githubcomusesapientgosdk.PromptUpdateParams{
-			IsActive:    githubcomusesapientgosdk.Bool(true),
-			LanguageID:  githubcomusesapientgosdk.String("language_id"),
-			PlatformIDs: []string{"string"},
-			RegionID:    githubcomusesapientgosdk.String("region_id"),
-			Text:        githubcomusesapientgosdk.String("x"),
-			TopicID:     githubcomusesapientgosdk.String("topic_id"),
+		"operation_id",
+		githubcomusesapientgosdk.APIPerformanceOperationUpdateParams{
+			CategoryName:       githubcomusesapientgosdk.String("category_name"),
+			CategorySlug:       githubcomusesapientgosdk.String("category_slug"),
+			Description:        githubcomusesapientgosdk.String("description"),
+			InterfaceID:        githubcomusesapientgosdk.String("interface_id"),
+			Method:             githubcomusesapientgosdk.String("x"),
+			OpenAPIOperationID: githubcomusesapientgosdk.String("openapi_operation_id"),
+			Path:               githubcomusesapientgosdk.String("x"),
 		},
 	)
 	if err != nil {
@@ -99,7 +102,7 @@ func TestPromptUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestPromptListWithOptionalParams(t *testing.T) {
+func TestAPIPerformanceOperationListWithOptionalParams(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -112,11 +115,9 @@ func TestPromptListWithOptionalParams(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.Prompts.List(context.TODO(), githubcomusesapientgosdk.PromptListParams{
-		IncludeArchived: githubcomusesapientgosdk.Bool(true),
-		IsActive:        githubcomusesapientgosdk.Bool(true),
-		Status:          githubcomusesapientgosdk.String("archived"),
-		TopicID:         githubcomusesapientgosdk.String("topic_id"),
+	_, err := client.APIPerformance.Operations.List(context.TODO(), githubcomusesapientgosdk.APIPerformanceOperationListParams{
+		CategoryID:  githubcomusesapientgosdk.String("category_id"),
+		InterfaceID: githubcomusesapientgosdk.String("interface_id"),
 	})
 	if err != nil {
 		var apierr *githubcomusesapientgosdk.Error
@@ -127,7 +128,7 @@ func TestPromptListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestPromptDelete(t *testing.T) {
+func TestAPIPerformanceOperationDelete(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -140,7 +141,7 @@ func TestPromptDelete(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.Prompts.Delete(context.TODO(), "prompt_id")
+	_, err := client.APIPerformance.Operations.Delete(context.TODO(), "operation_id")
 	if err != nil {
 		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {

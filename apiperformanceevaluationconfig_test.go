@@ -13,7 +13,7 @@ import (
 	"github.com/usesapient/go-sdk/option"
 )
 
-func TestContextGetCompanyWithOptionalParams(t *testing.T) {
+func TestAPIPerformanceEvaluationConfigGetWithOptionalParams(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -26,15 +26,9 @@ func TestContextGetCompanyWithOptionalParams(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.Context.GetCompany(
-		context.TODO(),
-		"company",
-		githubcomusesapientgosdk.ContextGetCompanyParams{
-			For:    githubcomusesapientgosdk.String("for"),
-			Format: githubcomusesapientgosdk.ContextGetCompanyParamsFormatJson,
-			Since:  githubcomusesapientgosdk.String("since"),
-		},
-	)
+	_, err := client.APIPerformance.EvaluationConfig.Get(context.TODO(), githubcomusesapientgosdk.APIPerformanceEvaluationConfigGetParams{
+		InterfaceID: githubcomusesapientgosdk.String("interface_id"),
+	})
 	if err != nil {
 		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
@@ -44,7 +38,7 @@ func TestContextGetCompanyWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestContextCompanyWithOptionalParams(t *testing.T) {
+func TestAPIPerformanceEvaluationConfigUpdateWithOptionalParams(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -57,15 +51,18 @@ func TestContextCompanyWithOptionalParams(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.Context.Company(
-		context.TODO(),
-		"company",
-		githubcomusesapientgosdk.ContextCompanyParams{
-			For:    githubcomusesapientgosdk.String("for"),
-			Format: githubcomusesapientgosdk.ContextCompanyParamsFormatJson,
-			Since:  githubcomusesapientgosdk.String("since"),
+	_, err := client.APIPerformance.EvaluationConfig.Update(context.TODO(), githubcomusesapientgosdk.APIPerformanceEvaluationConfigUpdateParams{
+		APIBaseURL: githubcomusesapientgosdk.String("api_base_url"),
+		EnvVars: map[string]string{
+			"foo": "string",
 		},
-	)
+		EvalTypes:    []string{"string"},
+		Framework:    githubcomusesapientgosdk.String("framework"),
+		InterfaceID:  githubcomusesapientgosdk.String("interface_id"),
+		OperationIDs: []string{"string"},
+		Platforms:    []string{"string"},
+		UseCaseIDs:   []string{"string"},
+	})
 	if err != nil {
 		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {

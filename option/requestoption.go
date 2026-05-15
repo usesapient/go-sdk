@@ -15,7 +15,7 @@ import (
 	"github.com/usesapient/go-sdk/internal/requestconfig"
 )
 
-// RequestOption is an option for the requests made by the sapient API Client
+// RequestOption is an option for the requests made by the Sapient API Client
 // which can be supplied to clients, services, and methods. You can read more about this functional
 // options pattern in our [README].
 //
@@ -263,15 +263,7 @@ func WithRequestTimeout(dur time.Duration) RequestOption {
 // environment to be the "production" environment. An environment specifies which base URL
 // to use by default.
 func WithEnvironmentProduction() RequestOption {
-	return requestconfig.WithDefaultBaseURL("https://public-api.usesapient.com/")
-}
-
-// WithBearerToken returns a RequestOption that sets the client setting "bearer_token".
-func WithBearerToken(value string) RequestOption {
-	return requestconfig.RequestOptionFunc(func(r *requestconfig.RequestConfig) error {
-		r.BearerToken = value
-		return nil
-	})
+	return requestconfig.WithDefaultBaseURL("https://api-public.usesapient.com/")
 }
 
 // WithAPIKey returns a RequestOption that sets the client setting "api_key".

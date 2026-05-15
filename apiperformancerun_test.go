@@ -13,7 +13,7 @@ import (
 	"github.com/usesapient/go-sdk/option"
 )
 
-func TestAPIAPIPerformanceFailureAnalysisWithOptionalParams(t *testing.T) {
+func TestAPIPerformanceRunGet(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -26,13 +26,7 @@ func TestAPIAPIPerformanceFailureAnalysisWithOptionalParams(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.API.APIPerformance.FailureAnalysis(
-		context.TODO(),
-		"brand_id",
-		githubcomusesapientgosdk.APIAPIPerformanceFailureAnalysisParams{
-			IntegrationID: githubcomusesapientgosdk.String("integration_id"),
-		},
-	)
+	_, err := client.APIPerformance.Runs.Get(context.TODO(), "run_id")
 	if err != nil {
 		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {
@@ -42,7 +36,7 @@ func TestAPIAPIPerformanceFailureAnalysisWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestAPIAPIPerformanceLatestRunsWithOptionalParams(t *testing.T) {
+func TestAPIPerformanceRunListWithOptionalParams(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -55,13 +49,11 @@ func TestAPIAPIPerformanceLatestRunsWithOptionalParams(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.API.APIPerformance.LatestRuns(
-		context.TODO(),
-		"brand_id",
-		githubcomusesapientgosdk.APIAPIPerformanceLatestRunsParams{
-			Limit: githubcomusesapientgosdk.Int(1),
-		},
-	)
+	_, err := client.APIPerformance.Runs.List(context.TODO(), githubcomusesapientgosdk.APIPerformanceRunListParams{
+		OperationID: "x",
+		IncludeRaw:  githubcomusesapientgosdk.Bool(true),
+		Limit:       githubcomusesapientgosdk.Int(1),
+	})
 	if err != nil {
 		var apierr *githubcomusesapientgosdk.Error
 		if errors.As(err, &apierr) {

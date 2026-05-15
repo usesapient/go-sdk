@@ -6,7 +6,7 @@
 
 <!-- x-release-please-end -->
 
-The Sapient Go library provides convenient access to the Sapient REST API
+The Sapient Go library provides convenient access to the [Sapient REST API](https://docs.usesapient.com)
 from applications written in Go.
 
 It is generated with [Stainless](https://www.stainless.com/).
