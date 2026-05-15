@@ -24,7 +24,6 @@ func TestAPIPromptNewBatch(t *testing.T) {
 	}
 	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
-		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.API.Prompts.NewBatch(context.TODO(), githubcomusesapientgosdk.APIPromptNewBatchParams{
@@ -56,7 +55,6 @@ func TestAPIPromptBatch(t *testing.T) {
 	}
 	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
-		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.API.Prompts.Batch(context.TODO(), githubcomusesapientgosdk.APIPromptBatchParams{

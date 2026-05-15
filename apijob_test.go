@@ -24,7 +24,6 @@ func TestAPIJobListJobsWithOptionalParams(t *testing.T) {
 	}
 	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
-		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.API.Jobs.ListJobs(context.TODO(), githubcomusesapientgosdk.APIJobListJobsParams{
@@ -52,7 +51,6 @@ func TestAPIJobGetJob(t *testing.T) {
 	}
 	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
-		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.API.Jobs.GetJob(context.TODO(), "job_id")
@@ -76,7 +74,6 @@ func TestAPIJobListWithOptionalParams(t *testing.T) {
 	}
 	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
-		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.API.Jobs.List(context.TODO(), githubcomusesapientgosdk.APIJobListParams{
@@ -104,7 +101,6 @@ func TestAPIJobGet(t *testing.T) {
 	}
 	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
-		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.API.Jobs.Get(context.TODO(), "job_id")

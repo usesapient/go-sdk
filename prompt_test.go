@@ -24,7 +24,6 @@ func TestPromptGenerateFromListWithOptionalParams(t *testing.T) {
 	}
 	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
-		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.Prompts.GenerateFromList(context.TODO(), githubcomusesapientgosdk.PromptGenerateFromListParams{
