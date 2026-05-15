@@ -24,7 +24,6 @@ func TestEvalRunGet(t *testing.T) {
 	}
 	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
-		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.EvalRuns.Get(context.TODO(), "run_id")
@@ -48,7 +47,6 @@ func TestEvalRunListWithOptionalParams(t *testing.T) {
 	}
 	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
-		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.EvalRuns.List(context.TODO(), githubcomusesapientgosdk.EvalRunListParams{
@@ -76,7 +74,6 @@ func TestEvalRunDiagnoseWithOptionalParams(t *testing.T) {
 	}
 	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
-		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.EvalRuns.Diagnose(context.TODO(), githubcomusesapientgosdk.EvalRunDiagnoseParams{

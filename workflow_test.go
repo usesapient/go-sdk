@@ -24,7 +24,6 @@ func TestWorkflowNewWithOptionalParams(t *testing.T) {
 	}
 	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
-		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.Workflows.New(context.TODO(), githubcomusesapientgosdk.WorkflowNewParams{
@@ -57,7 +56,6 @@ func TestWorkflowGet(t *testing.T) {
 	}
 	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
-		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.Workflows.Get(context.TODO(), "workflow_id")
@@ -81,7 +79,6 @@ func TestWorkflowRunWithOptionalParams(t *testing.T) {
 	}
 	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
-		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.Workflows.Run(

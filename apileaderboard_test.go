@@ -24,7 +24,6 @@ func TestAPILeaderboardListCompaniesWithOptionalParams(t *testing.T) {
 	}
 	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
-		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.API.Leaderboard.ListCompanies(context.TODO(), githubcomusesapientgosdk.APILeaderboardListCompaniesParams{

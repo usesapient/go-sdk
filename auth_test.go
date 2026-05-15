@@ -24,7 +24,6 @@ func TestAuthGetStatus(t *testing.T) {
 	}
 	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
-		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.Auth.GetStatus(context.TODO())
@@ -48,7 +47,6 @@ func TestAuthStatus(t *testing.T) {
 	}
 	client := githubcomusesapientgosdk.NewClient(
 		option.WithBaseURL(baseURL),
-		option.WithBearerToken("My Bearer Token"),
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.Auth.Status(context.TODO())
