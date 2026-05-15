@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.0 (2026-05-15)
+
+Full Changelog: [v0.1.0...v0.2.0](https://github.com/usesapient/go-sdk/compare/v0.1.0...v0.2.0)
+
+### Features
+
+* Update Sapient public OpenAPI spec ([f535609](https://github.com/usesapient/go-sdk/commit/f53560907f2f40e035c8167c174c2f832f54118c))
+
 ## 0.1.0 (2026-05-15)
 
 Full Changelog: [v0.0.1...v0.1.0](https://github.com/usesapient/go-sdk/compare/v0.0.1...v0.1.0)
